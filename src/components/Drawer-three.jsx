@@ -73,6 +73,7 @@ const DrawerThree = (props) => {
             actions[names[6]].repetitions = 1;
           mixer.stopAllAction();
           actions[names[6]].reset().play();
+          setShowText(!showText)
             break;
           }
         }}
