@@ -15,6 +15,8 @@ const DrawerOne = (props) => {
   const { actions, names, mixer } = useAnimations(animations, group)
   console.log(names)
   const [showText, setShowText] = React.useState(false);
+  const [initializeLoop, setInitializeLoop] = React.useState(true);
+  const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
 
   useEffect(() => {
     const fn = (e) => {
@@ -31,6 +33,11 @@ const DrawerOne = (props) => {
           mixer.stopAllAction();
           actions[names[3]].reset().play();
           break;
+          case actions[names[6]]:
+          mixer.stopAllAction();
+          setDrawerIsOpen(false)
+          actions[names[3]].reset().play();
+          break;
       }
     }
     mixer.addEventListener('finished', fn)
@@ -38,6 +45,12 @@ const DrawerOne = (props) => {
       mixer.removeEventListener('finished', fn)
     }
   }, [mixer, names]);
+
+  useEffect(() => {
+    if (initializeLoop===true){
+  actions[names[3]].reset().play(); 
+    } else {}
+  })
 
   return <>
     {showText && <Html>
@@ -47,17 +60,32 @@ const DrawerOne = (props) => {
       {...props}
       dispose={null}
       so onClick={() => {
+        switch (drawerIsOpen) {
+          case false:
         actions[names[1]].repetitions = 1;
         mixer.stopAllAction();
         actions[names[1]].reset().play();
+        setDrawerIsOpen(true)
         setShowText(!showText)
+        break;
+        case true:
+          actions[names[6]].repetitions = 1;
+        mixer.stopAllAction();
+        actions[names[6]].reset().play();
+          break;
+        }
       }}
-      onPointerEnter={() => {actions[names[2]].repetitions = 1;
+      onPointerEnter={() => {
+        if (drawerIsOpen===false){
+        actions[names[2]].repetitions = 1;
         mixer.stopAllAction();
-        actions[names[2]].reset().play();}}
-      onPointerLeave={() => {actions[names[0]].repetitions = 1;
+        actions[names[2]].reset().play();}}}
+      onPointerLeave={() => {
+        if (drawerIsOpen===false){
+        actions[names[0]].repetitions = 1;
         mixer.stopAllAction();
-        actions[names[0]].reset().play();}}
+        setInitializeLoop(false);
+        actions[names[0]].reset().play();}}}
     >
       <group ref={group} {...props} dispose={null}>
         <group name="Scene">
