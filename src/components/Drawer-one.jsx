@@ -17,12 +17,27 @@ const DrawerOne = (props) => {
   const [showText, setShowText] = React.useState(false);
 
   useEffect(() => {
-    const fn = (e) => console.log(e, 'finished')
+    const fn = (e) => {
+      switch (e.action) {
+        case actions[names[1]]:
+          mixer.stopAllAction();
+          actions[names[5]].reset().play();
+          break;
+        case actions[names[2]]:
+          mixer.stopAllAction();
+          actions[names[4]].reset().play();
+          break;
+          case actions[names[0]]:
+          mixer.stopAllAction();
+          actions[names[3]].reset().play();
+          break;
+      }
+    }
     mixer.addEventListener('finished', fn)
     return () => {
       mixer.removeEventListener('finished', fn)
     }
-  }, [mixer]);
+  }, [mixer, names]);
 
   return <>
     {showText && <Html>
@@ -37,8 +52,12 @@ const DrawerOne = (props) => {
         actions[names[1]].reset().play();
         setShowText(!showText)
       }}
-      onPointerEnter={() => console.log('enter')}
-      onPointerLeave={() => console.log('leave')}
+      onPointerEnter={() => {actions[names[2]].repetitions = 1;
+        mixer.stopAllAction();
+        actions[names[2]].reset().play();}}
+      onPointerLeave={() => {actions[names[0]].repetitions = 1;
+        mixer.stopAllAction();
+        actions[names[0]].reset().play();}}
     >
       <group ref={group} {...props} dispose={null}>
         <group name="Scene">
