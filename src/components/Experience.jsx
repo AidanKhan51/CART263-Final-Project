@@ -1,5 +1,6 @@
 //import from libraries
 import { Stage, CameraControls, Grid } from "@react-three/drei";
+import { useState } from 'react'
 //import from Drawer.jsx
 import Cabinet from "./Cabinet";
 import DrawerOne from "./Drawer-one";
@@ -19,25 +20,26 @@ const gridConfig = {
     infiniteGrid: true
 }
 
-const Experience = () => {
+const Experience = (props) => {
+    const [enabled, setEnabled] = useState(true);
     return (
-
         <>
             <Grid position={[-2.5, -9.6, 0]} args={[10.5, 10.5]} {...gridConfig} />
             <color attach="background" args={["black"]} />
-            <Stage environment={"dawn"}>
+            <Stage environment={"sunset"}>
+                {/*apartment, city, dawn, forest, lobby, night, park, studio, sunset or warehouse*/}
                 <group position={[0, 0, 0]}>
                     < Cabinet scale={2} />
-                    < DrawerOne scale={2} />
-                    < DrawerTwo scale={2} />
-                    < DrawerThree scale={2} />
-                    < DrawerFour scale={2} />
+                    <DrawerOne setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
+                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
+                    <DrawerThree setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
+                    <DrawerFour setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
                 </group>
             </Stage>
             < CameraControls
                 minDistance={15}
                 maxDistance={50}
-                enabled={true}
+                enabled={enabled}
             />
         </>
     );
