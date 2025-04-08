@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, Html, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
+import Folder from "./Folder";
 
 const DrawerOne = (props) => {
   const group = React.useRef()
@@ -16,6 +17,7 @@ const DrawerOne = (props) => {
   console.log(names)
   const [initializeLoop, setInitializeLoop] = React.useState(true);
   const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
+  const [renderFolder, setRenderFolder] = React.useState(false);
 
   useEffect(() => {
     const fn = (e) => {
@@ -23,6 +25,7 @@ const DrawerOne = (props) => {
         case actions[names[1]]:
           mixer.stopAllAction();
           actions[names[5]].reset().play();
+          setRenderFolder(true)
           break;
         case actions[names[2]]:
           mixer.stopAllAction();
@@ -68,6 +71,7 @@ const DrawerOne = (props) => {
             break;
           case true:
             e.stopPropagation()
+            setRenderFolder(false)
             actions[names[6]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[6]].reset().play();
@@ -75,16 +79,14 @@ const DrawerOne = (props) => {
             break;
         }
       }}
-      onPointerEnter={(e) => {
-        e.stopPropagation()
+      onPointerEnter={() => {
         if (drawerIsOpen === false) {
           actions[names[2]].repetitions = 1;
           mixer.stopAllAction();
           actions[names[2]].reset().play();
         }
       }}
-      onPointerLeave={(e) => {
-        e.stopPropagation()
+      onPointerLeave={() => {
         if (drawerIsOpen === false) {
           actions[names[0]].repetitions = 1;
           mixer.stopAllAction();
@@ -102,6 +104,7 @@ const DrawerOne = (props) => {
         </group>
       </group>
     </group >
+    {renderFolder && <Folder scale={2} />}
   </>;
 }
 

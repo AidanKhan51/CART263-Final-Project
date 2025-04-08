@@ -60,9 +60,10 @@ const Folder = (props) => {
     <group
       {...props}
       dispose={null}
-      so onClick={() => {
+      so onClick={(e) => {
         switch (folderIsOpen) {
           case false:
+            e.stopPropagation()
             actions[names[1]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[1]].reset().play();
@@ -70,6 +71,7 @@ const Folder = (props) => {
             setFolderIsOpen(true)
             break;
           case true:
+            e.stopPropagation()
             actions[names[0]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[0]].reset().play();

@@ -54,7 +54,7 @@ const DrawerThree = (props) => {
     <group
       {...props}
       dispose={null}
-      so onClick={() => {
+      so onClick={(e) => {
         switch (drawerIsOpen) {
           case false:
             e.stopPropagation()
@@ -75,7 +75,6 @@ const DrawerThree = (props) => {
         }
       }}
       onPointerEnter={() => {
-        e.stopPropagation()
         if (drawerIsOpen === false) {
           actions[names[2]].repetitions = 1;
           mixer.stopAllAction();
@@ -83,7 +82,6 @@ const DrawerThree = (props) => {
         }
       }}
       onPointerLeave={() => {
-        e.stopPropagation()
         if (drawerIsOpen === false) {
           actions[names[0]].repetitions = 1;
           mixer.stopAllAction();
