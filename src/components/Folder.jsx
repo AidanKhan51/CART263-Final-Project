@@ -51,6 +51,8 @@ const Folder = (props) => {
       actions[names[5]].reset().play();
     } else { }
   })
+
+
   return <>
     {showText && <Html>
       <div>The idea behind ts</div>

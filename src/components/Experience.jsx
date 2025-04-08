@@ -7,7 +7,7 @@ import DrawerOne from "./Drawer-one";
 import DrawerTwo from "./Drawer-two";
 import DrawerThree from "./Drawer-three";
 import DrawerFour from "./Drawer-four";
-import Folder from "./Folder.jsx";
+import Folder from "./Folder";
 
 const gridConfig = {
     cellSize: 5,

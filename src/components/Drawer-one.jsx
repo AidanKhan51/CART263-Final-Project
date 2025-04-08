@@ -50,13 +50,15 @@ const DrawerOne = (props) => {
       actions[names[3]].reset().play();
     } else { }
   })
+
   return <>
     <group
       {...props}
       dispose={null}
-      so onClick={() => {
+      so onClick={(e) => {
         switch (drawerIsOpen) {
           case false:
+            e.stopPropagation()
             actions[names[1]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[1]].reset().play();
@@ -65,22 +67,24 @@ const DrawerOne = (props) => {
             setDrawerIsOpen(true)
             break;
           case true:
+            e.stopPropagation()
             actions[names[6]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[6]].reset().play();
             props.setEnabled(true)
-
             break;
         }
       }}
-      onPointerEnter={() => {
+      onPointerEnter={(e) => {
+        e.stopPropagation()
         if (drawerIsOpen === false) {
           actions[names[2]].repetitions = 1;
           mixer.stopAllAction();
           actions[names[2]].reset().play();
         }
       }}
-      onPointerLeave={() => {
+      onPointerLeave={(e) => {
+        e.stopPropagation()
         if (drawerIsOpen === false) {
           actions[names[0]].repetitions = 1;
           mixer.stopAllAction();
