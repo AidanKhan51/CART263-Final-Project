@@ -24,6 +24,7 @@ const Folder = (props) => {
         case actions[names[1]]:
           mixer.stopAllAction();
           actions[names[6]].reset().play();
+          setShowText(!showText)
           break;
         case actions[names[4]]:
           mixer.stopAllAction();
@@ -55,7 +56,8 @@ const Folder = (props) => {
 
   return <>
     {showText && <Html>
-      <div>The idea behind ts</div>
+      <div className="folder_text">Things to fix: <br></br> -Create more pleasant scene <br></br> -Add further types of media <br></br> -Create system to add media modularly <br></br> -Make this div look pretty!
+      </div>
     </Html>}
     <group
       {...props}
@@ -67,7 +69,6 @@ const Folder = (props) => {
             actions[names[1]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[1]].reset().play();
-            setShowText(!showText)
             setFolderIsOpen(true)
             break;
           case true:
