@@ -57,6 +57,7 @@ const Folder = (props) => {
   return <>
     {showText && <Html>
       <div className="folder_text">Things to fix: <br></br> -Create more pleasant scene <br></br> -Add further types of media <br></br> -Create system to add media modularly <br></br> -Make this div look pretty!
+      <img src="/jerma.jpg" width="100"height="100"></img>
       </div>
     </Html>}
     <group
