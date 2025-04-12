@@ -23,3 +23,13 @@ body {
     overscroll-behavior-y: none;
     background: white;
 }
+
+.folder_text {
+    position: absolute;
+    top: -400px;
+    right: 0;
+    left: 100;
+    width: 200px;
+    height: 100px;
+
+}

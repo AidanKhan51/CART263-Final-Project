@@ -7,6 +7,8 @@ import DrawerOne from "./Drawer-one";
 import DrawerTwo from "./Drawer-two";
 import DrawerThree from "./Drawer-three";
 import DrawerFour from "./Drawer-four";
+import Folder from "./Folder";
+
 const gridConfig = {
     cellSize: 5,
     cellThickness: 0.5,
@@ -34,6 +36,7 @@ const Experience = (props) => {
                     <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
                     <DrawerThree setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
                     <DrawerFour setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
+
                 </group>
             </Stage>
             < CameraControls

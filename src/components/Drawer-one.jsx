@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, Html, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
+import Folder from "./Folder";
 
 const DrawerOne = (props) => {
   const group = React.useRef()
@@ -13,9 +14,10 @@ const DrawerOne = (props) => {
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { actions, names, mixer } = useAnimations(animations, group)
-  const [showText, setShowText] = React.useState(false);
+  console.log(names)
   const [initializeLoop, setInitializeLoop] = React.useState(true);
   const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
+  const [renderFolder, setRenderFolder] = React.useState(false);
 
   useEffect(() => {
     const fn = (e) => {
@@ -23,6 +25,7 @@ const DrawerOne = (props) => {
         case actions[names[1]]:
           mixer.stopAllAction();
           actions[names[5]].reset().play();
+          setRenderFolder(true)
           break;
         case actions[names[2]]:
           mixer.stopAllAction();
@@ -50,30 +53,29 @@ const DrawerOne = (props) => {
       actions[names[3]].reset().play();
     } else { }
   })
+
   return <>
-    {showText && <Html>
-      <div>I am Drawer One!</div>
-    </Html>}
     <group
       {...props}
       dispose={null}
-      so onClick={() => {
+      so onClick={(e) => {
         switch (drawerIsOpen) {
           case false:
+            e.stopPropagation()
             actions[names[1]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[1]].reset().play();
-            setShowText(!showText)
             props.onCameraPositionChange([10, 15, 0])
             props.setEnabled(false)
             setDrawerIsOpen(true)
             break;
           case true:
+            e.stopPropagation()
+            setRenderFolder(false)
             actions[names[6]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[6]].reset().play();
             props.setEnabled(true)
-            setShowText(!showText)
             break;
         }
       }}
@@ -102,6 +104,7 @@ const DrawerOne = (props) => {
         </group>
       </group>
     </group >
+    {renderFolder && <Folder scale={2} />}
   </>;
 }
 

@@ -14,7 +14,6 @@ const DrawerTwo = (props) => {
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { actions, names, mixer } = useAnimations(animations, group)
-  const [showText, setShowText] = React.useState(false);
   const [initializeLoop, setInitializeLoop] = React.useState(true);
   const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
 
@@ -52,29 +51,26 @@ const DrawerTwo = (props) => {
     } else { }
   })
   return <>
-    {showText && <Html>
-      <div>I am Drawer One!</div>
-    </Html>}
     <group
       {...props}
       dispose={null}
-      so onClick={() => {
+      so onClick={(e) => {
         switch (drawerIsOpen) {
           case false:
+            e.stopPropagation()
             actions[names[1]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[1]].reset().play();
-            setShowText(!showText)
             props.onCameraPositionChange([10, 15, 0])
             props.setEnabled(false)
             setDrawerIsOpen(true)
             break;
           case true:
+            e.stopPropagation()
             actions[names[6]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[6]].reset().play();
             props.setEnabled(true)
-            setShowText(!showText)
             break;
         }
       }}
