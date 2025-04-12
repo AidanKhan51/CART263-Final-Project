@@ -65,7 +65,7 @@ const DrawerFour = (props) => {
             mixer.stopAllAction();
             actions[names[1]].reset().play();
             setShowText(!showText)
-            props.onCameraPositionChange([20, 10, 0])
+            props.onCameraPositionChange([10, 15, 0])
             props.setEnabled(false)
             setDrawerIsOpen(true)
             break;
