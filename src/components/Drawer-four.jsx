@@ -74,7 +74,6 @@ const DrawerFour = (props) => {
             mixer.stopAllAction();
             actions[names[6]].reset().play();
             props.setEnabled(true)
-            setShowText(!showText)
             break;
         }
       }}
