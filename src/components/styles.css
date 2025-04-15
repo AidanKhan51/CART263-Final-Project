@@ -24,12 +24,42 @@ body {
     background: white;
 }
 
-.folder_text {
-    position: absolute;
-    top: -400px;
-    right: 0;
-    left: 100;
-    width: 200px;
-    height: 100px;
+.title {
+    color: white;
+}
 
+.menu {
+    position: fixed;
+    left: -700px;
+    right: 0px;
+    width: 250px;
+    background-color: grey;
+}
+
+.image {
+    max-width: 300px;
+    max-height: 600px;
+}
+
+input[type=text],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
 }
