@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.5.3 public/models/drawer-one.glb
 */
 import React, { useEffect, useState } from "react";
 import { useGraph } from '@react-three/fiber'
-import { useGLTF, Html, useAnimations } from '@react-three/drei'
+import { useGLTF, Html, useAnimations, Float } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import Folder from "./Folder";
 
@@ -18,6 +18,7 @@ const DrawerOne = (props) => {
   const [initializeLoop, setInitializeLoop] = React.useState(true);
   const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
   const [renderFolder, setRenderFolder] = React.useState(false);
+  const [drawerTitle, setDrawerTitle] = React.useState(false);
 
   useEffect(() => {
     const fn = (e) => {
@@ -55,6 +56,11 @@ const DrawerOne = (props) => {
   })
 
   return <>
+    <Float floatIntensity={3} rotationIntensity={0} speed={3}>
+      {drawerTitle && <Html className="drawer_title" position={[2, 19, 0.5]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform occlude>
+        Images
+      </Html>}
+    </Float>
     <group
       {...props}
       dispose={null}
@@ -74,6 +80,7 @@ const DrawerOne = (props) => {
             setRenderFolder(false)
             actions[names[6]].repetitions = 1;
             mixer.stopAllAction();
+            setDrawerTitle(false)
             actions[names[6]].reset().play();
             props.setEnabled(true)
             break;
@@ -83,6 +90,7 @@ const DrawerOne = (props) => {
         if (drawerIsOpen === false) {
           actions[names[2]].repetitions = 1;
           mixer.stopAllAction();
+          setDrawerTitle(true);
           actions[names[2]].reset().play();
         }
       }}
@@ -90,6 +98,7 @@ const DrawerOne = (props) => {
         if (drawerIsOpen === false) {
           actions[names[0]].repetitions = 1;
           mixer.stopAllAction();
+          setDrawerTitle(false);
           setInitializeLoop(false);
           actions[names[0]].reset().play();
         }

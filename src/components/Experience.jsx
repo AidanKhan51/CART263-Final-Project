@@ -1,12 +1,14 @@
 //import from libraries
 import { Stage, CameraControls, Grid, Html } from "@react-three/drei";
-import { useState, createRef } from 'react'
+import React, { useState, createRef } from 'react'
 //import from Drawer.jsx
 import Cabinet from "./Cabinet";
 import DrawerOne from "./Drawer-one";
 import DrawerTwo from "./Drawer-two";
 import DrawerThree from "./Drawer-three";
 import DrawerFour from "./Drawer-four";
+import Cables from "./Cables";
+import Monitor from "./Monitor";
 
 const gridConfig = {
     cellSize: 5,
@@ -27,31 +29,40 @@ const Experience = (props) => {
     const fileRef = createRef();
     const titleRef = createRef();
     const descriptionRef = createRef();
+    const musicRef = createRef();
     const [drawerOneFile, setDrawerOneFile] = useState();
     const [drawerOneTitle, setDrawerOneTitle] = useState();
     const [drawerOneDescription, setDrawerOneDescription] = useState();
+    const [drawerTwoFile, setDrawerTwoFile] = useState();
     const handleSubmit = (e) => {
         e.preventDefault();
         setDrawerOneFile(fileRef.current.files[0]);
         setDrawerOneTitle(titleRef.current.value);
         setDrawerOneDescription(descriptionRef.current.value);
+        setDrawerTwoFile(musicRef.current.files[0]);
         e.target.reset()
     };
+    const [formOn, setFormOn] = React.useState(false);
+    const handleToggleForm = () => {
+        setFormOn(!formOn);
+    }
     return (
         <>
-            <Grid position={[-2.5, -9.6, 0]} args={[10.5, 10.5]} {...gridConfig} />
+            <Grid position={[-2.5, -11.9, 0]} args={[10.5, 10.5]} {...gridConfig} />
             <color attach="background" args={["black"]} />
             <Stage environment={"sunset"}>
                 {/*apartment, city, dawn, forest, lobby, night, park, studio, sunset or warehouse*/}
                 <group position={[0, 0, 0]}>
                     < Cabinet scale={2} />
                     <DrawerOne setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} file={drawerOneFile} title={drawerOneTitle} description={drawerOneDescription} scale={2} />
-                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
+                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} file={drawerTwoFile} scale={2} />
                     <DrawerThree setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
                     <DrawerFour setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
+                    <Monitor setEnabled={setEnabled} onToggleForm={handleToggleForm} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
+                    <Cables scale={2.005} />
                 </group>
             </Stage>
-            <Html>
+            {formOn && <Html position={[-0.2, 11, 1.3]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform>
                 <div className="menu">
                     <form onSubmit={handleSubmit}>
                         <input type="text" id="title" name="title" placeholder="Title" ref={titleRef}></input>
@@ -69,7 +80,7 @@ const Experience = (props) => {
                         </>}
                         {formatType === "Music" && <>
                             <input type="file" id="upload" name="upload"
-                                accept="audio/*"></input>
+                                accept="audio/*" ref={musicRef}></input>
                         </>}
                         {formatType === "Model" && <>
                             <input type="file" id="upload" name="upload"
@@ -79,7 +90,7 @@ const Experience = (props) => {
                         <input type="submit" value="Submit"></input>
                     </form>
                 </div>
-            </Html>
+            </Html>}
             < CameraControls
                 minDistance={15}
                 maxDistance={50}

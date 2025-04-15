@@ -5,7 +5,7 @@ Command: npx gltfjsx@6.5.3 public/models/drawer-four.glb
 
 import React, { useEffect } from "react";
 import { useGraph } from '@react-three/fiber'
-import { useGLTF, Html, useAnimations } from '@react-three/drei'
+import { useGLTF, Html, useAnimations, Float } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
 const DrawerFour = (props) => {
@@ -17,6 +17,7 @@ const DrawerFour = (props) => {
   const [showText, setShowText] = React.useState(false);
   const [initializeLoop, setInitializeLoop] = React.useState(true);
   const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
+  const [drawerTitle, setDrawerTitle] = React.useState(false);
 
   useEffect(() => {
     const fn = (e) => {
@@ -52,9 +53,11 @@ const DrawerFour = (props) => {
     } else { }
   })
   return <>
-    {showText && <Html>
-      <div>I am Drawer One!</div>
-    </Html>}
+    <Float floatIntensity={3} rotationIntensity={0} speed={3}>
+      {drawerTitle && <Html className="drawer_title" position={[2, 19, 0.5]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform occlude>
+        Videos
+      </Html>}
+    </Float>
     <group
       {...props}
       dispose={null}
@@ -72,6 +75,7 @@ const DrawerFour = (props) => {
           case true:
             actions[names[6]].repetitions = 1;
             mixer.stopAllAction();
+            setDrawerTitle(false)
             actions[names[6]].reset().play();
             props.setEnabled(true)
             break;
@@ -81,6 +85,7 @@ const DrawerFour = (props) => {
         if (drawerIsOpen === false) {
           actions[names[2]].repetitions = 1;
           mixer.stopAllAction();
+          setDrawerTitle(true);
           actions[names[2]].reset().play();
         }
       }}
@@ -88,6 +93,7 @@ const DrawerFour = (props) => {
         if (drawerIsOpen === false) {
           actions[names[0]].repetitions = 1;
           mixer.stopAllAction();
+          setDrawerTitle(false);
           setInitializeLoop(false);
           actions[names[0]].reset().play();
         }
