@@ -1,21 +1,15 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import Experience from "./components/Experience";
-import { Suspense, useState } from "react"
-import { Loader } from "@react-three/drei";
+import { useState } from "react"
 
 
 function App() {
   const [cameraPosition, setCameraPosition] = useState([0, 0, 10])
   return (
-    <>
-      <Canvas camera={{ position: [30, 0, 0], fov: 50 }} shadows>
-        <Suspense>
-          <CameraRig position={cameraPosition} />
-          <Experience position={cameraPosition} onCameraPositionChange={setCameraPosition} />
-        </Suspense>
-      </Canvas>
-      <Loader></Loader>
-    </>
+    <Canvas camera={{ position: [30, 0, 0], fov: 50 }} shadows>
+      <CameraRig position={cameraPosition} />
+      <Experience position={cameraPosition} onCameraPositionChange={setCameraPosition} />
+    </Canvas>
   );
 }
 
