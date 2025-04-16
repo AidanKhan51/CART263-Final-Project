@@ -71,7 +71,8 @@ const DrawerOne = (props) => {
             actions[names[1]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[1]].reset().play();
-            props.onCameraPositionChange([10, 15, 0])
+            props.onCameraPositionChange([12, 12, 0])
+            props.onCameraAngleChange([0, 4.5, 0])
             props.setEnabled(false)
             setDrawerIsOpen(true)
             break;

@@ -24,7 +24,8 @@ const Monitor = (props) => {
         switch (monitorOn) {
           case false:
             e.stopPropagation()
-            props.onCameraPositionChange([5, 20, 0])
+            props.onCameraPositionChange([5, 10, 0])
+            props.onCameraAngleChange([0, 10, 0])
             props.setEnabled(false)
             setMonitorTitle(false)
             props.onToggleForm(!props.formOn)
