@@ -10,7 +10,7 @@ import { useGLTF, useAnimations, Html } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
 {/*IMPORTANT: most of the code is a duplicate from drawer-one.jsx. 
-  The code in this file will be anything not mentioned there*/ }
+  The repeated code in this file will be less detailed unless it is unique to this file*/ }
 
 const Folder = (props) => {
   const group = React.useRef()
