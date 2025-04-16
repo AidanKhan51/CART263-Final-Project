@@ -54,11 +54,11 @@ const Experience = (props) => {
                 {/*apartment, city, dawn, forest, lobby, night, park, studio, sunset or warehouse*/}
                 <group position={[0, 0, 0]}>
                     < Cabinet scale={2} />
-                    <DrawerOne setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} file={drawerOneFile} title={drawerOneTitle} description={drawerOneDescription} scale={2} />
-                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} file={drawerTwoFile} scale={2} />
-                    <DrawerThree setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
-                    <DrawerFour setEnabled={setEnabled} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
-                    <Monitor setEnabled={setEnabled} onToggleForm={handleToggleForm} cameraPosition={props.Cameraposition} onCameraPositionChange={props.onCameraPositionChange} scale={2} />
+                    <DrawerOne setEnabled={setEnabled} cameraPosition={props.CameraPosition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} file={drawerOneFile} title={drawerOneTitle} description={drawerOneDescription} scale={2} />
+                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} file={drawerTwoFile} scale={2} />
+                    <DrawerThree setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={2} />
+                    <DrawerFour setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={2} />
+                    <Monitor setEnabled={setEnabled} onToggleForm={handleToggleForm} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={2} />
                     <Cables scale={2.005} />
                 </group>
             </Stage>
