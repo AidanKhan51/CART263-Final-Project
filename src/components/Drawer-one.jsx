@@ -57,7 +57,7 @@ const DrawerOne = (props) => {
 
   return <>
     <Float floatIntensity={3} rotationIntensity={0} speed={3}>
-      {drawerTitle && <Html className="drawer_title" position={[2, 19, 0.5]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform occlude>
+      {drawerTitle && <Html className="drawer_title" position={[8, 76, 2]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform occlude>
         Images
       </Html>}
     </Float>
@@ -71,8 +71,8 @@ const DrawerOne = (props) => {
             actions[names[1]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[1]].reset().play();
-            props.onCameraPositionChange([12, 12, 0])
-            props.onCameraAngleChange([0, 4.5, 0])
+            props.onCameraPositionChange([48, 48, 0])
+            props.onCameraAngleChange([0, 20, 0])
             props.setEnabled(false)
             setDrawerIsOpen(true)
             break;
@@ -114,7 +114,7 @@ const DrawerOne = (props) => {
         </group>
       </group>
     </group >
-    {renderFolder && <Folder scale={2} file={props.file} title={props.title} description={props.description} />}
+    {renderFolder && <Folder scale={4} file={props.file} title={props.title} description={props.description} />}
   </>;
 }
 

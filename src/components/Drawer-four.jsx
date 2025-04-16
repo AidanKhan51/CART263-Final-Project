@@ -54,7 +54,7 @@ const DrawerFour = (props) => {
   })
   return <>
     <Float floatIntensity={3} rotationIntensity={0} speed={3}>
-      {drawerTitle && <Html className="drawer_title" position={[2, 19, 0.5]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform occlude>
+      {drawerTitle && <Html className="drawer_title" position={[8, 76, 2]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform occlude>
         Videos
       </Html>}
     </Float>
@@ -68,7 +68,8 @@ const DrawerFour = (props) => {
             mixer.stopAllAction();
             actions[names[1]].reset().play();
             setShowText(!showText)
-            props.onCameraPositionChange([10, 15, 0])
+            props.onCameraPositionChange([45, 0, 0])
+            props.onCameraAngleChange([0, -35, 0])
             props.setEnabled(false)
             setDrawerIsOpen(true)
             break;

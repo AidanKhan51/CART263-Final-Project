@@ -53,7 +53,7 @@ const DrawerTwo = (props) => {
   })
   return <>
     <Float floatIntensity={3} rotationIntensity={0} speed={3}>
-      {drawerTitle && <Html className="drawer_title" position={[2, 19, 0.5]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform occlude>
+      {drawerTitle && <Html className="drawer_title" position={[8, 76, 2]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform occlude>
         Audio
       </Html>}
     </Float>
@@ -67,7 +67,8 @@ const DrawerTwo = (props) => {
             actions[names[1]].repetitions = 1;
             mixer.stopAllAction();
             actions[names[1]].reset().play();
-            props.onCameraPositionChange([10, 15, 0])
+            props.onCameraPositionChange([48, 30, 0])
+            props.onCameraAngleChange([0, 5, 0])
             props.setEnabled(false)
             setDrawerIsOpen(true)
             break;

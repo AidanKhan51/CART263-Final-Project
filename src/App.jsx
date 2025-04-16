@@ -9,7 +9,7 @@ function App() {
   const [cameraAngle, setCameraAngle] = useState([0, 0, 0])
   return (
     <>
-      <Canvas camera={{ position: [30, 0, 0], angle: [0, 0, 0], fov: 50 }} shadows>
+      <Canvas camera={{ position: [120, 0, 0], angle: [0, 0, 0], fov: 50 }} shadows>
         <Suspense>
           <CameraRig position={cameraPosition} angle={cameraAngle} />
           <Experience position={cameraPosition} onCameraPositionChange={setCameraPosition} angle={cameraAngle} onCameraAngleChange={setCameraAngle} />

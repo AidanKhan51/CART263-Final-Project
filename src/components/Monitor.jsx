@@ -13,7 +13,7 @@ const Monitor = (props) => {
 
   return <>
     <Float floatIntensity={3} rotationIntensity={0} speed={3}>
-      {monitorTitle && <Html className="drawer_title" position={[2, 19, 0.5]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform>
+      {monitorTitle && <Html className="drawer_title" position={[8, 76, 2]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform>
         Add Artifact
       </Html>}
     </Float>
@@ -24,8 +24,8 @@ const Monitor = (props) => {
         switch (monitorOn) {
           case false:
             e.stopPropagation()
-            props.onCameraPositionChange([5, 10, 0])
-            props.onCameraAngleChange([0, 10, 0])
+            props.onCameraPositionChange([20, 40, 0])
+            props.onCameraAngleChange([0, 40, 0])
             props.setEnabled(false)
             setMonitorTitle(false)
             props.onToggleForm(!props.formOn)
