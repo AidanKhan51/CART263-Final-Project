@@ -14,7 +14,7 @@ const Monitor = (props) => {
   return <>
     <Float floatIntensity={3} rotationIntensity={0} speed={3}>
       {monitorTitle && <Html className="drawer_title" position={[8, 76, 2]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform>
-        Add Artifact
+        Add Artifact?
       </Html>}
     </Float>
     <group
