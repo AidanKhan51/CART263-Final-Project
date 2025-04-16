@@ -24,6 +24,11 @@ body {
     background: white;
 }
 
+@font-face {
+    font-family: Pixelon;
+    src: url('../assets/Pixelon.OGALo.ttf');
+}
+
 .title {
     color: white;
 }
@@ -31,6 +36,7 @@ body {
 .drawer_title {
     color: white;
     font-size: 30px;
+    font-family: Pixelon;
 }
 
 .menu {
