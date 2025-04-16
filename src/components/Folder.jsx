@@ -73,9 +73,9 @@ const Folder = (props) => {
   return <>
 
     {showTitle && <Html position={[60, 9.8, 5]} rotation={[-1.5708, 1.5708, 1.5708]} transform>
-        <div className="title" style={{fontSize: "100px"}}>
-          {props.title}
-        </div>
+      <div className="title" style={{ fontSize: "100px" }}>
+        {props.title}
+      </div>
     </Html>}
     {showText && <Html position={[-60.5, 8, 40]} rotation={[-1.5708, 0.37, 1.5708]} transform>
       <div>
@@ -85,6 +85,13 @@ const Folder = (props) => {
         {preview && <img src={preview} className="image" />}
       </div>
     </Html>}
+
+    {showTitle && <Html position={[8, 39, 20]} rotation={[-1.5708, 1.5708, 1.5708]} transform>
+      <div className="title">
+        {props.title}
+      </div>
+    </Html>}
+
 
     <group
       {...props}

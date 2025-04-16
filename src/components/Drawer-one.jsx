@@ -114,7 +114,7 @@ const DrawerOne = (props) => {
         </group>
       </group>
     </group >
-    {renderFolder && <Folder scale={4} file={props.file} title={props.title} description={props.description} />}
+    {renderFolder && props.onFolderSubmitted && <Folder scale={4} file={props.file} title={props.title} description={props.description} />}
   </>;
 }
 

@@ -1,7 +1,7 @@
 //import from libraries
 import { Stage, CameraControls, Grid, Html } from "@react-three/drei";
 import React, { useState, createRef } from 'react'
-//import from Drawer.jsx
+//import 3D models
 import Cabinet from "./Cabinet";
 import DrawerOne from "./Drawer-one";
 import DrawerTwo from "./Drawer-two";
@@ -10,6 +10,7 @@ import DrawerFour from "./Drawer-four";
 import Cables from "./Cables";
 import Monitor from "./Monitor";
 
+//grid background parameters
 const gridConfig = {
     cellSize: 10,
     cellThickness: 0.5,
@@ -23,23 +24,41 @@ const gridConfig = {
     infiniteGrid: true
 }
 
+//grid background parameters
 const Experience = (props) => {
+    //variable to enable or disable camera movement
     const [enabled, setEnabled] = useState(true);
+    //becomes true when form is submitted, which then renders the file 3d model
+    const [folderSubmitted, setFolderSubmitted] = React.useState(false);
+    //variable that carries the format type selected in the form to determine which files are accepted to upload
     const [formatType, setFormatType] = useState();
+    //Creates Ref for the image within the image artifact
     const fileRef = createRef();
+    //Creates Ref for the title of the Image folder
     const titleRef = createRef();
+    //Creates Ref for the description inside the Image folder
     const descriptionRef = createRef();
+    //Creates Ref for the music within the music artifact
     const musicRef = createRef();
+    //Creates Ref for video within the video artifact
+    const videoRef = createRef();
+    //Variables that store the image, title, and description of the file in drawer one
     const [drawerOneFile, setDrawerOneFile] = useState();
     const [drawerOneTitle, setDrawerOneTitle] = useState();
     const [drawerOneDescription, setDrawerOneDescription] = useState();
-    const [drawerTwoFile, setDrawerTwoFile] = useState();
+    //Form submit handler
     const handleSubmit = (e) => {
+        //prevent page reload
         e.preventDefault();
+        //if an image is submitted, allow folder in drawer one to render when drawer is open
+        if (formatType === "Image") {
+            setFolderSubmitted(true)
+        }
+        //stores variables with the uploaded image, uploaded title, and uploaded description filled out in the form
         setDrawerOneFile(fileRef.current.files[0]);
         setDrawerOneTitle(titleRef.current.value);
         setDrawerOneDescription(descriptionRef.current.value);
-        setDrawerTwoFile(musicRef.current.files[0]);
+        //resets the form
         e.target.reset()
     };
     const [formOn, setFormOn] = React.useState(false);
@@ -54,8 +73,8 @@ const Experience = (props) => {
                 {/*apartment, city, dawn, forest, lobby, night, park, studio, sunset or warehouse*/}
                 <group position={[0, 0, 0]}>
                     < Cabinet scale={4} />
-                    <DrawerOne setEnabled={setEnabled} cameraPosition={props.CameraPosition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} file={drawerOneFile} title={drawerOneTitle} description={drawerOneDescription} scale={4} />
-                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} file={drawerTwoFile} scale={4} />
+                    <DrawerOne setEnabled={setEnabled} cameraPosition={props.CameraPosition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} file={drawerOneFile} title={drawerOneTitle} description={drawerOneDescription} onFolderSubmitted={folderSubmitted} scale={4} />
+                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
                     <DrawerThree setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
                     <DrawerFour setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
                     <Monitor setEnabled={setEnabled} onToggleForm={handleToggleForm} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
@@ -72,7 +91,8 @@ const Experience = (props) => {
                             <option value="Null">Select Format</option>
                             <option value="Image">Image</option>
                             <option value="Music">Music</option>
-                            <option value="Model">3D Model</option>
+                            <option value="Model">Model (not working)</option>
+                            <option value="Video">Video </option>
                         </select>
                         {formatType === "Image" && <>
                             <input type="file" id="upload" name="upload"
@@ -84,7 +104,11 @@ const Experience = (props) => {
                         </>}
                         {formatType === "Model" && <>
                             <input type="file" id="upload" name="upload"
-                                accept="image/png, image/jpeg, " style={{ fontFamily: 'Pixelon', color: '#ffffff' }}></input>
+                                accept="" style={{ fontFamily: 'Pixelon', color: '#ffffff' }}></input>
+                        </>}
+                        {formatType === "Video" && <>
+                            <input type="file" id="upload" name="upload"
+                                accept="video/*" ref={videoRef} style={{ fontFamily: 'Pixelon', color: '#ffffff' }}></input>
                         </>}
                         <input type="text" id="description" name="description" placeholder="Description" ref={descriptionRef}></input>
                         <input type="submit" value="Submit"></input>
