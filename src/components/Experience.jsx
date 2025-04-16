@@ -11,10 +11,10 @@ import Cables from "./Cables";
 import Monitor from "./Monitor";
 
 const gridConfig = {
-    cellSize: 5,
+    cellSize: 10,
     cellThickness: 0.5,
     cellColor: '#6f6f6f',
-    sectionSize: 10,
+    sectionSize: 20,
     sectionThickness: 1,
     sectionColor: '#9d4b4b',
     fadeDistance: 400,
