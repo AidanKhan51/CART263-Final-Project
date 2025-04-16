@@ -12,16 +12,16 @@ function App() {
   return (
     <>
       <Canvas camera={{ position: [120, 0, 0], angle: [0, 0, 0], fov: 50 }} shadows>
-        {'// Above line sets default camera position, fov, and angle in the canvas'}
-        {'// Suspense is used to hide the GUI until models are finished loading'}
+        {/* Above line sets default camera position, fov, and angle in the canvas*/}
+        {/*Suspense is used to hide the GUI until models are finished loading*/}
         <Suspense>
-          {'// Camera rig used to move camera angle and position'}
+          {/*Camera rig used to move camera angle and position*/}
           <CameraRig position={cameraPosition} angle={cameraAngle} />
-          {'// VERY important location. This is where most of the program is run. Visit Experience.jsx to view. Carries a couple props related to the camera rig.'}
+          {/*VERY important location. This is where most of the program is run. Visit Experience.jsx to view. Carries a couple props related to the camera rig*/}
           <Experience position={cameraPosition} onCameraPositionChange={setCameraPosition} angle={cameraAngle} onCameraAngleChange={setCameraAngle} />
         </Suspense>
       </Canvas>
-      {'// R3F Drei default loader'}
+      {/*R3F Drei default loader*/}
       <Loader></Loader>
     </>
   );

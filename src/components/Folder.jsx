@@ -77,7 +77,7 @@ const Folder = (props) => {
         {props.title}
       </div>
     </Html>}
-    {showText && <Html position={[-60.5, 8, 40]} rotation={[-1.5708, 0.37, 1.5708]} transform>
+    {showText && <Html position={[-55.5, 8, 33.5]} rotation={[-1.5708, 0.37, 1.5708]} transform>
       <div>
         <div>
           {props.description}

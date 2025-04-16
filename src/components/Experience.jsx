@@ -61,17 +61,23 @@ const Experience = (props) => {
         //resets the form
         e.target.reset()
     };
+    //Determines whether form is rendered, called in Monitor.jsx onClick
     const [formOn, setFormOn] = React.useState(false);
+    //toggles when form is rendered, handler is needed to pass props
     const handleToggleForm = () => {
         setFormOn(!formOn);
     }
     return (
         <>
+            {/* Sets grid position and config*/}
             <Grid position={[-2.5, -47.6, 0]} args={[10.5, 10.5]} {...gridConfig} />
+            {'// Sets colour of background'}
             <color attach="background" args={["black"]} />
+            {/* sets HDRI for environment*/}
             <Stage environment={"sunset"}>
-                {/*apartment, city, dawn, forest, lobby, night, park, studio, sunset or warehouse*/}
+                {/*available HDRIs: apartment, city, dawn, forest, lobby, night, park, studio, sunset or warehouse*/}
                 <group position={[0, 0, 0]}>
+                    {/*3D models rendered here*/}
                     < Cabinet scale={4} />
                     <DrawerOne setEnabled={setEnabled} cameraPosition={props.CameraPosition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} file={drawerOneFile} title={drawerOneTitle} description={drawerOneDescription} onFolderSubmitted={folderSubmitted} scale={4} />
                     <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
@@ -81,9 +87,11 @@ const Experience = (props) => {
                     <Cables scale={4.01} />
                 </group>
             </Stage>
-            {formOn && <Html position={[-0.8, 44, 5.2]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform>
+            {/**/}
+            {formOn && <Html position={[-0.8, 44.5, 5.2]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform>
                 <div className="menu">
                     <form onSubmit={handleSubmit}>
+                        <h1 style={{ fontFamily: 'Pixelon', color: '#ffffff', fontSize: '40px', textAlign: 'center' }}>Add Artifact?</h1>
                         <input type="text" id="title" name="title" placeholder="Title" ref={titleRef}></input>
                         <select id="format" name="format" onChange={e => {
                             setFormatType(e.target.value)
