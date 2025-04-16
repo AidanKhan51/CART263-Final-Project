@@ -87,12 +87,16 @@ const Experience = (props) => {
                     <Cables scale={4.01} />
                 </group>
             </Stage>
-            {/**/}
+            {/*Form is rendered if formOn (when the monitor is click) is true*/}
             {formOn && <Html position={[-0.8, 44.5, 5.2]} rotation={[-3.1415927, 1.4835301, -3.1415927]} transform>
                 <div className="menu">
+                    {/*When form is submitted, run handler*/}
                     <form onSubmit={handleSubmit}>
+                        {/*Header*/}
                         <h1 style={{ fontFamily: 'Pixelon', color: '#ffffff', fontSize: '40px', textAlign: 'center' }}>Add Artifact?</h1>
+                        {/*text input for title of file*/}
                         <input type="text" id="title" name="title" placeholder="Title" ref={titleRef}></input>
+                        {/*selection to determine file format*/}
                         <select id="format" name="format" onChange={e => {
                             setFormatType(e.target.value)
                         }}>
@@ -102,6 +106,7 @@ const Experience = (props) => {
                             <option value="Model">Model (not working)</option>
                             <option value="Video">Video </option>
                         </select>
+                        {/*accept different files depending on selected format*/}
                         {formatType === "Image" && <>
                             <input type="file" id="upload" name="upload"
                                 accept="image/*" ref={fileRef} style={{ fontFamily: 'Pixelon', color: '#ffffff' }}></input>
@@ -118,11 +123,13 @@ const Experience = (props) => {
                             <input type="file" id="upload" name="upload"
                                 accept="video/*" ref={videoRef} style={{ fontFamily: 'Pixelon', color: '#ffffff' }}></input>
                         </>}
+                        {/*text input for file description*/}
                         <input type="text" id="description" name="description" placeholder="Description" ref={descriptionRef}></input>
                         <input type="submit" value="Submit"></input>
                     </form>
                 </div>
             </Html>}
+            {/*sets camera controls*/}
             < CameraControls
                 minDistance={60}
                 maxDistance={200}
@@ -131,5 +138,5 @@ const Experience = (props) => {
         </>
     );
 };
-
+{/*exports to App*/ }
 export default Experience;

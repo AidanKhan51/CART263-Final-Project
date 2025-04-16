@@ -8,6 +8,10 @@ import { useGraph } from '@react-three/fiber'
 import { useGLTF, Html, useAnimations, Float } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
+
+{/*IMPORTANT: this file is almost identical to Drawer-one.jsx and therefore is not commented.
+  Go to Drawer-one.jsx to view comments*/ }
+
 const DrawerTwo = (props) => {
   const group = React.useRef()
   const { scene, animations } = useGLTF('./models/drawer-two.glb')
