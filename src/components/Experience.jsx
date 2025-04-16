@@ -76,15 +76,15 @@ const Experience = (props) => {
                         </select>
                         {formatType === "Image" && <>
                             <input type="file" id="upload" name="upload"
-                                accept="image/*" ref={fileRef} style={{fontFamily: 'Pixelon', color:'#ffffff'}}></input>
+                                accept="image/*" ref={fileRef} style={{ fontFamily: 'Pixelon', color: '#ffffff' }}></input>
                         </>}
                         {formatType === "Music" && <>
                             <input type="file" id="upload" name="upload"
-                                accept="audio/*" ref={musicRef}style={{fontFamily: 'Pixelon', color:'#ffffff'}}></input>
+                                accept="audio/*" ref={musicRef} style={{ fontFamily: 'Pixelon', color: '#ffffff' }}></input>
                         </>}
                         {formatType === "Model" && <>
                             <input type="file" id="upload" name="upload"
-                                accept="image/png, image/jpeg, " style={{fontFamily: 'Pixelon', color:'#ffffff'}}></input>
+                                accept="image/png, image/jpeg, " style={{ fontFamily: 'Pixelon', color: '#ffffff' }}></input>
                         </>}
                         <input type="text" id="description" name="description" placeholder="Description" ref={descriptionRef}></input>
                         <input type="submit" value="Submit"></input>
