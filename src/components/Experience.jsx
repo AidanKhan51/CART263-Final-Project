@@ -28,6 +28,8 @@ const gridConfig = {
 const Experience = (props) => {
     //variable to enable or disable camera movement
     const [enabled, setEnabled] = useState(true);
+    //variable that determines whether or not the monitor has been clicked. Props carried to monitor.jsx
+    const [monitorOn, setMonitorOn] = React.useState(false);
     //becomes true when form is submitted, which then renders the file 3d model
     const [folderSubmitted, setFolderSubmitted] = React.useState(false);
     //variable that carries the format type selected in the form to determine which files are accepted to upload
@@ -52,12 +54,42 @@ const Experience = (props) => {
         e.preventDefault();
         //if an image is submitted, allow folder in drawer one to render when drawer is open
         if (formatType === "Image") {
-            setFolderSubmitted(true)
+            setFolderSubmitted(true);
+            //disable monitor and form
+            setMonitorOn(false);
+            setFormOn(false);
+            //change camera position to drawer One
+            props.onCameraPositionChange([48, 48, 0])
+            props.onCameraAngleChange([0, 20, 0])
+            //stores variables with the uploaded image, uploaded title, and uploaded description filled out in the form
+            setDrawerOneFile(fileRef.current.files[0]);
+            setDrawerOneTitle(titleRef.current.value);
+            setDrawerOneDescription(descriptionRef.current.value);
         }
-        //stores variables with the uploaded image, uploaded title, and uploaded description filled out in the form
-        setDrawerOneFile(fileRef.current.files[0]);
-        setDrawerOneTitle(titleRef.current.value);
-        setDrawerOneDescription(descriptionRef.current.value);
+        if (formatType === "Music") {
+            //disable monitor and form
+            setMonitorOn(false);
+            setFormOn(false);
+            //change camera position to drawer Two
+            props.onCameraPositionChange([48, 30, 0])
+            props.onCameraAngleChange([0, 5, 0])
+        }
+        if (formatType === "Model") {
+            //disable monitor and form
+            setMonitorOn(false);
+            setFormOn(false);
+            //change camera position to drawer Three
+            props.onCameraPositionChange([45, 12, 0])
+            props.onCameraAngleChange([0, -20, 0])
+        }
+        if (formatType === "Video") {
+            //disable monitor and form
+            setMonitorOn(false);
+            setFormOn(false);
+            //change camera position to drawer Four
+            props.onCameraPositionChange([45, 0, 0])
+            props.onCameraAngleChange([0, -35, 0])
+        }
         //resets the form
         e.target.reset()
     };
@@ -83,7 +115,7 @@ const Experience = (props) => {
                     <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
                     <DrawerThree setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
                     <DrawerFour setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
-                    <Monitor setEnabled={setEnabled} onToggleForm={handleToggleForm} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
+                    <Monitor setEnabled={setEnabled} monitorOn={monitorOn} setMonitorOn={setMonitorOn} onToggleForm={handleToggleForm} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
                     <Cables scale={4.01} />
                 </group>
             </Stage>

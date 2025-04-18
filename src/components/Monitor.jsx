@@ -13,7 +13,6 @@ import { useGLTF, Float, Html } from '@react-three/drei'
 {/*Model stored for export*/ }
 const Monitor = (props) => {
   const { nodes, materials } = useGLTF('./models/monitor.glb')
-  const [monitorOn, setMonitorOn] = React.useState(false);
   const [monitorTitle, setMonitorTitle] = React.useState(false);
 
   return <>
@@ -28,7 +27,7 @@ const Monitor = (props) => {
       dispose={null}
       so onClick={(e) => {
         {/*When Monitor is clicked, move camera and render form*/ }
-        switch (monitorOn) {
+        switch (props.monitorOn) {
           case false:
             e.stopPropagation()
             props.onCameraPositionChange([20, 40, 0])
@@ -37,7 +36,7 @@ const Monitor = (props) => {
             setMonitorTitle(false)
             {/*Render form*/ }
             props.onToggleForm(!props.formOn)
-            setMonitorOn(true)
+            props.setMonitorOn(true)
             break;
           case true:
             e.stopPropagation()
@@ -45,18 +44,18 @@ const Monitor = (props) => {
             setMonitorTitle(false)
             {/*Hide form*/ }
             props.onToggleForm(!props.formOn)
-            setMonitorOn(false)
+            props.setMonitorOn(false)
             break;
         }
       }}
       onPointerEnter={() => {
-        if (monitorOn === false) {
+        if (props.monitorOn === false) {
           {/*Turn on title*/ }
           setMonitorTitle(true);
         }
       }}
       onPointerLeave={() => {
-        if (monitorOn === false) {
+        if (props.monitorOn === false) {
           {/*Turn off title*/ }
           setMonitorTitle(false);
         }

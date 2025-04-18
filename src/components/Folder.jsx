@@ -80,19 +80,26 @@ const Folder = (props) => {
 
   return <>
     {/*title of folder gathered from html form, rendered if folder is hovered over*/}
-    {showTitle && <Html position={[60, 9.8, 5]} rotation={[-1.5708, 1.5708, 1.5708]} transform>
+    {showTitle && <Html position={[5, 47.8, 18]} rotation={[-1.5708, 1.5708, 1.5708]} transform>
       <div className="title" style={{ fontSize: "100px" }}>
         {props.title}
       </div>
     </Html>}
     {/*description of folder and uploaded image gathered from html form, rendered if folder is opened*/}
     {showText && <Html position={[-55.5, 8, 33.5]} rotation={[-1.5708, 0.37, 1.5708]} transform>
+      {/*Title filled out in Form*/}
       <div>
+        <div style={{ fontSize: "200px", fontWeight: "bold", marginBottom: "30px" }}>
+          {props.title}
+        </div>
+        {/*image from html form, {preview} is a URL generated on line 30*/}
+        <div style={{ marginBottom: "30px" }}>
+          {preview && <img src={preview} className="image" />}
+        </div>
+        {/*Description filled out in form*/}
         <div>
           {props.description}
         </div>
-        {/*image from html form, {preview} is a URL generated on line 30*/}
-        {preview && <img src={preview} className="image" />}
       </div>
     </Html>}
 
