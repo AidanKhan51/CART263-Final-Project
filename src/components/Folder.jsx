@@ -18,6 +18,7 @@ const Folder = (props) => {
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { actions, names, mixer } = useAnimations(animations, group)
+  console.log(names)
   const [showText, setShowText] = React.useState(false);
   const [showTitle, setShowTitle] = React.useState(false);
   const [initializeLoop, setInitializeLoop] = React.useState(true);

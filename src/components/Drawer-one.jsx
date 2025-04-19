@@ -25,7 +25,6 @@ const DrawerOne = (props) => {
   const { nodes, materials } = useGraph(clone)
   {/*Animations*/ }
   const { actions, names, mixer } = useAnimations(animations, group)
-  console.log(names)
   {/*Initializes idle animation*/ }
   const [initializeLoop, setInitializeLoop] = React.useState(true);
   {/*Variable that determines if the drawer is open*/ }

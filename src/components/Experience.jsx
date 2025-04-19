@@ -32,6 +32,7 @@ const Experience = (props) => {
     const [monitorOn, setMonitorOn] = React.useState(false);
     //becomes true when form is submitted, which then renders the file 3d model
     const [folderSubmitted, setFolderSubmitted] = React.useState(false);
+    const [recordSubmitted, setRecordSubmitted] = React.useState(false);
     //variable that carries the format type selected in the form to determine which files are accepted to upload
     const [formatType, setFormatType] = useState();
     //Creates Ref for the image within the image artifact
@@ -48,6 +49,9 @@ const Experience = (props) => {
     const [drawerOneFile, setDrawerOneFile] = useState();
     const [drawerOneTitle, setDrawerOneTitle] = useState();
     const [drawerOneDescription, setDrawerOneDescription] = useState();
+    const [drawerTwoFile, setDrawerTwoFile] = useState();
+    const [drawerTwoTitle, setDrawerTwoTitle] = useState();
+    const [drawerTwoDescription, setDrawerTwoDescription] = useState();
     //Form submit handler
     const handleSubmit = (e) => {
         //prevent page reload
@@ -67,12 +71,16 @@ const Experience = (props) => {
             setDrawerOneDescription(descriptionRef.current.value);
         }
         if (formatType === "Music") {
+            setRecordSubmitted(true);
             //disable monitor and form
             setMonitorOn(false);
             setFormOn(false);
             //change camera position to drawer Two
             props.onCameraPositionChange([48, 30, 0])
             props.onCameraAngleChange([0, 5, 0])
+            setDrawerTwoFile(musicRef.current.files[0]);
+            setDrawerTwoTitle(titleRef.current.value);
+            setDrawerTwoDescription(descriptionRef.current.value);
         }
         if (formatType === "Model") {
             //disable monitor and form
@@ -112,7 +120,7 @@ const Experience = (props) => {
                     {/*3D models rendered here*/}
                     < Cabinet scale={4} />
                     <DrawerOne setEnabled={setEnabled} cameraPosition={props.CameraPosition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} file={drawerOneFile} title={drawerOneTitle} description={drawerOneDescription} onFolderSubmitted={folderSubmitted} scale={4} />
-                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
+                    <DrawerTwo setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} file={drawerTwoFile} title={drawerTwoTitle} description={drawerTwoDescription} onRecordSubmitted={recordSubmitted} scale={4} />
                     <DrawerThree setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
                     <DrawerFour setEnabled={setEnabled} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />
                     <Monitor setEnabled={setEnabled} monitorOn={monitorOn} setMonitorOn={setMonitorOn} onToggleForm={handleToggleForm} cameraPosition={props.Cameraposition} cameraAngle={props.CameraAngle} onCameraPositionChange={props.onCameraPositionChange} onCameraAngleChange={props.onCameraAngleChange} scale={4} />

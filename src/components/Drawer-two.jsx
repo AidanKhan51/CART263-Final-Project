@@ -7,6 +7,7 @@ import React, { useEffect } from "react";
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, Html, useAnimations, Float } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
+import Record from "./Record";
 
 
 {/*IMPORTANT: this file is almost identical to Drawer-one.jsx and therefore is not commented.
@@ -20,6 +21,7 @@ const DrawerTwo = (props) => {
   const { actions, names, mixer } = useAnimations(animations, group)
   const [initializeLoop, setInitializeLoop] = React.useState(true);
   const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
+  const [renderFolder, setRenderFolder] = React.useState(false);
   const [drawerTitle, setDrawerTitle] = React.useState(false);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const DrawerTwo = (props) => {
         case actions[names[1]]:
           mixer.stopAllAction();
           actions[names[5]].reset().play();
+          setRenderFolder(true)
           break;
         case actions[names[2]]:
           mixer.stopAllAction();
@@ -78,6 +81,7 @@ const DrawerTwo = (props) => {
             break;
           case true:
             e.stopPropagation()
+            setRenderFolder(false)
             actions[names[6]].repetitions = 1;
             mixer.stopAllAction();
             setDrawerTitle(false)
@@ -113,6 +117,8 @@ const DrawerTwo = (props) => {
         </group>
       </group>
     </group>
+    {/*If drawer is open and form has been submitted, render folder*/}
+    {renderFolder && props.onRecordSubmitted && <Record scale={4} file={props.file} title={props.title} description={props.description} />}
   </>;
 }
 
