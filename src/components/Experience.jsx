@@ -144,7 +144,7 @@ const Experience = (props) => {
                             <option value="Image">Image</option>
                             <option value="Music">Music</option>
                             <option value="Model">Model (not working)</option>
-                            <option value="Video">Video </option>
+                            <option value="Video">Video (not working)</option>
                         </select>
                         {/*accept different files depending on selected format*/}
                         {formatType === "Image" && <>

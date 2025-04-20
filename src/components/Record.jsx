@@ -80,21 +80,20 @@ const Record = (props) => {
 
   return <>
     {/*title of folder gathered from html form, rendered if folder is hovered over*/}
-    {showTitle && <Html position={[5, 30, 18]} rotation={[-1.5708, 1.5708, 1.5708]} transform>
+    {showTitle && <Html position={[5, 30, 18]} rotation={[-1.5708, 0.37, 1.5708]} transform>
       <div className="title" style={{ fontSize: "100px" }}>
         {props.title}
       </div>
     </Html>}
     {/*description of folder and uploaded image gathered from html form, rendered if folder is opened*/}
-    {showText && <Html position={[-55.5, 8, 33.5]} rotation={[-1.5708, 0.37, 1.5708]} transform>
-      {/*Title filled out in Form*/}
+    {showText && <Html position={[10, 30, 13]} rotation={[-1.5708, 0.37, 1.5708]} transform>
       <div>
-        {/*image from html form, {preview} is a URL generated on line 30*/}
+        {/*music from html form, {preview} is a URL generated on line 30*/}
         <div style={{ marginBottom: "30px" }}>
-          {preview && <audio src={preview} />}
+          {preview && <audio src={preview} controls style={{ width: "300px", height: "300px" }} />}
         </div>
         {/*Description filled out in form*/}
-        <div style={{ color: "white" }}>
+        <div style={{ color: "white", fontSize: "50px" }}>
           {props.description}
         </div>
       </div>
